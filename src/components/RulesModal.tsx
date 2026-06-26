@@ -35,7 +35,7 @@ export default function RulesModal({ onClose }: Props) {
               Good to know
             </p>
             <h2 id="rules-title" className="text-lg font-black text-white">
-              How it works
+              Instructions
             </h2>
           </div>
           <button

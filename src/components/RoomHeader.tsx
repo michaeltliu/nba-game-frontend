@@ -45,7 +45,7 @@ export default function RoomHeader({
         <button
           onClick={() => setShowRules(true)}
           className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/60 transition hover:bg-white/10 hover:text-white"
-          title="How it works"
+          title="Instructions"
         >
           <svg
             viewBox="0 0 24 24"
@@ -60,7 +60,7 @@ export default function RoomHeader({
             <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7" />
             <path d="M12 17h.01" />
           </svg>
-          <span className="hidden sm:inline">How it works</span>
+          <span className="hidden sm:inline">Instructions</span>
         </button>
         <button
           onClick={copy}

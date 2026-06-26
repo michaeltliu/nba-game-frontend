@@ -153,18 +153,24 @@ export default function HomePage() {
               <div className="mb-5">
                 <label className="label">Missing-position penalty</label>
                 <div className="grid grid-cols-3 gap-2">
-                  {[0, 1, 2].map((p) => (
+                  {(
+                    [
+                      { value: 0, label: "None" },
+                      { value: 1, label: "Default" },
+                      { value: 2, label: "Strict" },
+                    ] as const
+                  ).map(({ value, label }) => (
                     <button
                       type="button"
-                      key={p}
-                      onClick={() => setPenalty(p)}
+                      key={value}
+                      onClick={() => setPenalty(value)}
                       className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all ${
-                        penalty === p
+                        penalty === value
                           ? "border-flame-400 bg-flame-500/15 text-flame-400"
                           : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
                       }`}
                     >
-                      {p}
+                      {label}
                     </button>
                   ))}
                 </div>
@@ -180,7 +186,7 @@ export default function HomePage() {
                 <input
                   type="range"
                   min={0}
-                  max={5}
+                  max={3}
                   step={1}
                   value={extraPlayers}
                   onChange={(e) => setExtraPlayers(Number(e.target.value))}
@@ -188,7 +194,7 @@ export default function HomePage() {
                 />
                 <div className="mt-1 flex justify-between text-xs text-white/40">
                   <span>0</span>
-                  <span>5</span>
+                  <span>3</span>
                 </div>
               </div>
 
