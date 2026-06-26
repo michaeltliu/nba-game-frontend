@@ -1,5 +1,5 @@
 import type { Member } from "../types";
-import { fmtScore } from "../lib/format";
+import { fmtScore, normalizeScore } from "../lib/format";
 import Headshot from "./Headshot";
 
 interface Props {
@@ -24,7 +24,7 @@ export default function StandingsBoard({ members, myName }: Props) {
           <p className="mt-1 text-white/60">
             Top roster with a score of{" "}
             <span className="font-bold text-white">
-              {fmtScore(champion.score)}
+              {fmtScore(normalizeScore(champion.score, champion.nba_team.length))}
             </span>
           </p>
           <div className="mt-4 flex justify-center gap-2">
@@ -67,7 +67,7 @@ export default function StandingsBoard({ members, myName }: Props) {
                 </p>
               </div>
               <span className="text-right font-bold tabular-nums text-white">
-                {fmtScore(m.score)}
+                {fmtScore(normalizeScore(m.score, m.nba_team.length))}
               </span>
             </div>
           );

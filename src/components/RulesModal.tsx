@@ -63,8 +63,8 @@ export default function RulesModal({ onClose }: Props) {
             </h3>
             <div className="rounded-xl border border-white/10 bg-court-900/60 p-4">
               <p className="mb-3 text-sm text-white/70">
-                Your score multiplies your roster{"\u2019"}s combined stats
-                together, then divides by the square root of turnovers:
+                Your score is calculated from your roster{"\u2019"}s combined stats
+                as follows:
               </p>
               <div className="rounded-lg bg-black/30 px-3 py-3 text-center text-sm font-semibold tabular-nums text-white">
                 <span className="text-flame-300">PTS</span>
@@ -73,22 +73,27 @@ export default function RulesModal({ onClose }: Props) {
                 {" \u00d7 "}
                 <span className="text-flame-300">AST</span>
                 {" \u00d7 "}
-                <span className="text-flame-300">BLK</span>
+                <span className="text-flame-300">
+                  BLK<sup className="text-[0.75em]">0.8</sup>
+                </span>
                 {" \u00d7 "}
-                <span className="text-flame-300">STL</span>
+                <span className="text-flame-300">
+                  STL<sup className="text-[0.75em]">0.8</sup>
+                </span>
                 {" \u00d7 "}
-                <span className="text-flame-300">TS%</span>
+                <span className="text-flame-300">
+                  TS%<sup className="text-[0.75em]">1.5</sup>
+                </span>
                 <div className="my-1.5 flex items-center justify-center gap-2 text-white/40">
                   <span className="h-px w-10 bg-white/20" />
                   <span className="text-xs">divided by</span>
                   <span className="h-px w-10 bg-white/20" />
                 </div>
-                <span className="text-emerald-300">{"\u221a"}TOV</span>
+                <span className="text-flame-300">TOV<sup className="text-[0.75em]">0.5</sup></span>
               </div>
               <p className="mt-3 text-xs leading-relaxed text-white/40">
-                Stats are totaled across all five players on your roster. Higher
-                across the board is better{"\u2014"}except turnovers which drag you
-                down.
+                Each stat category is totaled across all five players on your roster. This scoring
+                formula encourages constructing well-rounded teams.
               </p>
             </div>
           </section>

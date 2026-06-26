@@ -1,5 +1,5 @@
 import type { Member } from "../types";
-import { fmtScore, initials } from "../lib/format";
+import { fmtScore, normalizeScore, initials } from "../lib/format";
 import Headshot from "./Headshot";
 
 interface Props {
@@ -46,7 +46,7 @@ export default function RosterBoard({ members, myName }: Props) {
                     Score
                   </span>
                   <span className="font-bold tabular-nums text-white">
-                    {fmtScore(m.score)}
+                    {fmtScore(normalizeScore(m.score, m.nba_team.length))}
                   </span>
                 </span>
               </div>

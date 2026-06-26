@@ -2,11 +2,16 @@ export function fmtStat(n: number, digits = 1): string {
   return n.toFixed(digits);
 }
 
+export function normalizeScore(score: number, rosterSize: number): number {
+  if (rosterSize === 0 || score === 0) return 0;
+  return Math.pow(score, 1 / rosterSize);
+}
+
 export function fmtScore(n: number): string {
   if (n === 0) return "0";
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
-  return n.toFixed(0);
+  return n.toFixed(2);
 }
 
 export function headshotUrl(pid: number): string {
