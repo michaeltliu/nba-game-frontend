@@ -48,10 +48,13 @@ export default function UpcomingQueue({ upcoming }: Props) {
                 {p.name}
               </p>
               <PositionBadges player={p} className="mt-1 justify-center" />
-              <div className="mt-1 flex justify-center gap-2 text-[10px] text-white/45">
+              <div className="mt-1 grid grid-cols-2 gap-x-1.0 gap-y-0.5 text-[9px] text-white/45">
                 <span>{fmtStat(p.pts)} pts</span>
                 <span>{fmtStat(p.reb)} reb</span>
                 <span>{fmtStat(p.ast)} ast</span>
+                <span>{fmtStat(p.stl + p.blk)} stk</span>
+                <span>{fmtStat(p.tov)} tov</span>
+                <span>{(p.ts * 100).toFixed(1)} TS%</span>
               </div>
             </div>
           ))}
