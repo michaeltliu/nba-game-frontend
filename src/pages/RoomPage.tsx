@@ -22,7 +22,14 @@ export default function RoomPage() {
 
   const [toast, setToast] = useState<string | null>(null);
   const [starting, setStarting] = useState(false);
-  const [lastBidRound, setLastBidRound] = useState(0);
+  const lastBidRoundKey = `hoops-last-bid-round:${roomCode}`;
+  const [lastBidRound, setLastBidRound] = useState(() => {
+    try {
+      return Number(sessionStorage.getItem(lastBidRoundKey) ?? 0);
+    } catch {
+      return 0;
+    }
+  });
 
   const showToast = (msg: string) => {
     setToast(msg);
@@ -61,6 +68,11 @@ export default function RoomPage() {
         showToast(friendlyFailure(res.failure_msg));
       } else {
         setLastBidRound(status.round_num);
+        try {
+          sessionStorage.setItem(lastBidRoundKey, String(status.round_num));
+        } catch {
+          /* storage unavailable; ignore */
+        }
         await refresh();
       }
     } catch (e) {
