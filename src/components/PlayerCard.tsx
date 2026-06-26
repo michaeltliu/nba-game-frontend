@@ -22,7 +22,7 @@ export default function PlayerCard({ player }: Props) {
   return (
     <div className="card animate-pop-in overflow-hidden">
       <div className="relative bg-gradient-to-b from-flame-500/20 to-transparent">
-        {player.skipped && (
+        {player.skipped > 0 && (
           <span className="absolute right-3 top-3 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold uppercase text-amber-300">
             No bids
           </span>

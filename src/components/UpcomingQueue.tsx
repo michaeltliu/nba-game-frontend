@@ -34,7 +34,7 @@ export default function UpcomingQueue({ upcoming }: Props) {
               <span className="absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-court-900/90 text-xs font-bold text-white/70">
                 {i + 1}
               </span>
-              {p.skipped && (
+              {p.skipped > 0 && (
                 <span className="absolute right-1.5 top-1.5 z-10 rounded-full bg-amber-500/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase text-amber-300">
                   No bids
                 </span>
