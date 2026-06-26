@@ -50,18 +50,18 @@ export default function AuctionView({
   const timeUp = remaining <= 0;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
-      <div className="space-y-5">
+    <div className="grid gap-6 grid-cols-[1fr_380px]">
+      <div className="min-w-0 space-y-5">
         {prevResult && <PrevResultBanner result={prevResult} />}
 
         <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-stretch">
-          <div className="card flex flex-col items-center justify-center gap-2 p-6 sm:w-52">
+          <div className="card flex flex-col items-center justify-center gap-2 p-6 sm:w-52 sm:shrink-0">
             <CountdownRing remaining={remaining} total={ringTotal} />
             <p className="text-sm font-medium text-white/50">
               {timeUp ? "Resolving\u2026" : "Round closes in"}
             </p>
           </div>
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <PlayerCard player={nbaPlayer} queuePosition={0} />
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function AuctionView({
         )}
       </div>
 
-      <div>
+      <div className="min-w-0">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/40">
           Rosters {"\u00b7"} Round {roundNum}
         </p>
