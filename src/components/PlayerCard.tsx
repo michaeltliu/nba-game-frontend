@@ -47,8 +47,8 @@ export default function PlayerCard({ player, queuePosition }: Props) {
 
       <div className="grid grid-cols-3 gap-2 p-5 sm:grid-cols-6">
         <Stat label="PTS" value={fmtStat(player.pts)} />
-        <Stat label="AST" value={fmtStat(player.ast)} />
         <Stat label="REB" value={fmtStat(player.reb)} />
+        <Stat label="AST" value={fmtStat(player.ast)} />
         <Stat label="BLK" value={fmtStat(player.blk)} />
         <Stat label="STL" value={fmtStat(player.stl)} />
         <Stat label="TOV" value={fmtStat(player.tov)} />
