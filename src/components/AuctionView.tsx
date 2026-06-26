@@ -50,7 +50,7 @@ export default function AuctionView({
   const timeUp = remaining <= 0;
 
   return (
-    <div className="grid gap-6 grid-cols-[1fr_380px]">
+    <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
       <div className="min-w-0 space-y-5">
         {prevResult && <PrevResultBanner result={prevResult} />}
 
@@ -86,7 +86,7 @@ export default function AuctionView({
       </div>
 
       <div className="min-w-0">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/40">
+        <p className="mb-3 mt-2 text-sm font-semibold uppercase tracking-wider text-white/40 lg:mt-0">
           Rosters {"\u00b7"} Round {roundNum}
         </p>
         <RosterBoard members={members} myName={myName} />

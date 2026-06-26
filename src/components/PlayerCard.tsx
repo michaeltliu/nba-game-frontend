@@ -31,13 +31,13 @@ export default function PlayerCard({ player, queuePosition }: Props) {
           <Headshot
             pid={player.pid}
             name={player.name}
-            className="h-28 w-28 shrink-0 rounded-2xl border border-white/10 bg-court-700"
+            className="h-24 w-24 shrink-0 rounded-2xl border border-white/10 bg-court-700 sm:h-28 sm:w-28"
           />
-          <div className="pb-2">
+          <div className="min-w-0 pb-2">
             <p className="text-xs font-semibold uppercase tracking-widest text-flame-400">
               Now Auctioning
             </p>
-            <h2 className="text-2xl font-black leading-tight">{player.name}</h2>
+            <h2 className="text-xl font-black leading-tight sm:text-2xl">{player.name}</h2>
             <p className="mt-1 text-sm text-white/50">
               TS%: {(player.ts * 100).toFixed(1)}%
             </p>
@@ -45,7 +45,7 @@ export default function PlayerCard({ player, queuePosition }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-6 gap-2 p-5">
+      <div className="grid grid-cols-3 gap-2 p-5 sm:grid-cols-6">
         <Stat label="PTS" value={fmtStat(player.pts)} />
         <Stat label="AST" value={fmtStat(player.ast)} />
         <Stat label="REB" value={fmtStat(player.reb)} />
