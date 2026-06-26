@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(255, 107, 0, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 100% 100%, rgba(80, 90, 255, 0.08), transparent 55%),
+    #0a0a0f;
+  color: #f5f5f7;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/10 bg-court-800/70 backdrop-blur-sm shadow-xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition-all
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-flame-400/70 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-b from-flame-400 to-flame-600 text-court-900 hover:brightness-110 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/5 text-white hover:bg-white/10 active:scale-[0.98];
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-court-900/70 px-4 py-3 text-white
+      placeholder:text-white/30 focus:border-flame-400/60 focus:outline-none focus:ring-2 focus:ring-flame-400/30;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-white/70;
+  }
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #ff8a3d, #e85d00);
+  border: 2px solid #0a0a0f;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.5);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #ff8a3d, #e85d00);
+  border: 2px solid #0a0a0f;
+  cursor: pointer;
+}
