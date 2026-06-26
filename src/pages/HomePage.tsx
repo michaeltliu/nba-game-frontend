@@ -78,14 +78,14 @@ export default function HomePage() {
     <div className="mx-auto flex min-h-full max-w-lg flex-col items-center justify-center px-4 py-12">
       <div className="mb-8 text-center">
         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-flame-400/30 bg-flame-500/10 px-4 py-1.5 text-sm font-medium text-flame-400">
-          Live Player Auction
+          2025-26 NBA Season
         </div>
         <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
           Hoops <span className="text-flame-500">Auction</span>
         </h1>
         <p className="mt-3 text-white/60">
-          Gather your friends, bid on NBA stars, and build the best statistical
-          roster.
+          Play against your friends, bid on NBA
+          stars, and build the best all-around roster.
         </p>
       </div>
 

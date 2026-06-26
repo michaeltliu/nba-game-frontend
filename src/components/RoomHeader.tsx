@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import RulesModal from "./RulesModal";
 
 interface Props {
   roomCode: string;
@@ -14,6 +15,7 @@ export default function RoomHeader({
 }: Props) {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const [showRules, setShowRules] = useState(false);
 
   const copy = async () => {
     try {
@@ -41,6 +43,26 @@ export default function RoomHeader({
           </span>
         )}
         <button
+          onClick={() => setShowRules(true)}
+          className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/60 transition hover:bg-white/10 hover:text-white"
+          title="How it works"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7" />
+            <path d="M12 17h.01" />
+          </svg>
+          <span className="hidden sm:inline">How it works</span>
+        </button>
+        <button
           onClick={copy}
           className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm transition hover:bg-white/10"
           title="Copy room code"
@@ -57,6 +79,8 @@ export default function RoomHeader({
           {playerName}
         </span>
       </div>
+
+      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
     </header>
   );
 }
