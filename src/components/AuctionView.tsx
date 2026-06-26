@@ -39,10 +39,18 @@ export default function AuctionView({
 
   // The API gives the round end timestamp but not the configured timer length,
   // so we capture the largest remaining time seen for this round as the total.
+  // We persist this to sessionStorage so a page refresh mid-round can still
+  // recover the original total (without it, totalRef would be initialised to
+  // the current remaining seconds, making the ring appear full after refresh).
   const totalRef = useRef(0);
   useEffect(() => {
-    totalRef.current = Math.max(1, Math.ceil(roundEndsAt - Date.now() / 1000));
-  }, [roundEndsAt]);
+    const key = `hoops-ring-total-${roundNum}`;
+    const stored = Number(sessionStorage.getItem(key) ?? 0);
+    const fromNow = Math.max(1, Math.ceil(roundEndsAt - Date.now() / 1000));
+    const best = Math.max(stored, fromNow);
+    totalRef.current = best;
+    if (best > stored) sessionStorage.setItem(key, String(best));
+  }, [roundEndsAt, roundNum]);
   const ringTotal = Math.max(totalRef.current, Math.ceil(remaining), 1);
 
   const rosterFull = (me?.nba_team.length ?? 0) >= 5;
