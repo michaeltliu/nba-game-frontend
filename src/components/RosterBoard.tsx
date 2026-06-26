@@ -67,7 +67,7 @@ export default function RosterBoard({ members, myName }: Props) {
                       className="aspect-square w-full"
                     />
                     <p className="truncate px-1 py-1 text-center text-[10px] text-white/60">
-                      {p.name.split(" ").slice(-1)[0]}
+                      {p.name.split(" ").slice(1).join(" ") || p.name}
                     </p>
                   </div>
                 ) : (
