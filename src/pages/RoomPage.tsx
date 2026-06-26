@@ -136,7 +136,7 @@ export default function RoomPage() {
 
       {status.round_num > 0 && nbaPlayer && (
         <AuctionView
-          nbaPlayer={nbaPlayer}
+          playerQueue={status.player_queue}
           roundNum={status.round_num}
           roundEndsAt={status.round_ends_at}
           bidsReceived={status.bids_received}

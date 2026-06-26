@@ -6,9 +6,10 @@ import PlayerCard from "./PlayerCard";
 import BidPanel from "./BidPanel";
 import RosterBoard from "./RosterBoard";
 import PrevResultBanner from "./PrevResultBanner";
+import UpcomingQueue from "./UpcomingQueue";
 
 interface Props {
-  nbaPlayer: NBAPlayer;
+  playerQueue: NBAPlayer[];
   roundNum: number;
   roundEndsAt: number;
   bidsReceived: number;
@@ -21,7 +22,7 @@ interface Props {
 }
 
 export default function AuctionView({
-  nbaPlayer,
+  playerQueue,
   roundNum,
   roundEndsAt,
   bidsReceived,
@@ -32,6 +33,8 @@ export default function AuctionView({
   prevResult,
   onBid,
 }: Props) {
+  const nbaPlayer = playerQueue[0];
+  const upcoming = playerQueue.slice(1);
   const remaining = useCountdown(roundEndsAt);
 
   // The API gives the round end timestamp but not the configured timer length,
@@ -62,6 +65,8 @@ export default function AuctionView({
             <PlayerCard player={nbaPlayer} queuePosition={0} />
           </div>
         </div>
+
+        <UpcomingQueue upcoming={upcoming} />
 
         {me ? (
           <BidPanel
