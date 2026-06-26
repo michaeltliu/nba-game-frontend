@@ -1,6 +1,7 @@
 import type { NBAPlayer } from "../types";
 import { fmtStat } from "../lib/format";
 import Headshot from "./Headshot";
+import PositionBadges from "./PositionBadges";
 
 interface Props {
   upcoming: NBAPlayer[];
@@ -46,6 +47,7 @@ export default function UpcomingQueue({ upcoming }: Props) {
               <p className="mt-1.5 truncate text-center text-xs font-medium text-white/80">
                 {p.name}
               </p>
+              <PositionBadges player={p} className="mt-1 justify-center" />
               <div className="mt-1 flex justify-center gap-2 text-[10px] text-white/45">
                 <span>{fmtStat(p.pts)} pts</span>
                 <span>{fmtStat(p.reb)} reb</span>

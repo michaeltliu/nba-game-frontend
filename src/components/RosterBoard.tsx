@@ -1,6 +1,7 @@
 import type { Member } from "../types";
 import { fmtScore, normalizeScore, initials } from "../lib/format";
 import Headshot from "./Headshot";
+import PositionBadges from "./PositionBadges";
 
 interface Props {
   members: Member[];
@@ -66,9 +67,10 @@ export default function RosterBoard({ members, myName }: Props) {
                       name={p.name}
                       className="aspect-square w-full"
                     />
-                    <p className="truncate px-1 py-1 text-center text-[10px] text-white/60">
+                    <p className="truncate px-1 pt-1 text-center text-[10px] text-white/60">
                       {p.name.split(" ").slice(1).join(" ") || p.name}
                     </p>
+                    <PositionBadges player={p} className="justify-center px-1 pb-1" />
                   </div>
                 ) : (
                   <div

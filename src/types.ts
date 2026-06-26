@@ -9,6 +9,9 @@ export interface NBAPlayer {
   tov: number;
   ts: number;
   skipped: boolean;
+  guard: boolean;
+  forward: boolean;
+  center: boolean;
 }
 
 export interface Member {
