@@ -190,13 +190,6 @@ export default function HomePage() {
                   <span>0</span>
                   <span>5</span>
                 </div>
-                <p className="mt-1.5 text-xs text-white/40">
-                  Each member needs 5 players. Queue{" "}
-                  <span className="font-semibold text-white/60">
-                    {extraPlayers}
-                  </span>{" "}
-                  more per member beyond that minimum.
-                </p>
               </div>
 
               <button className="btn-primary w-full" disabled={busy}>
@@ -233,10 +226,6 @@ export default function HomePage() {
           )}
         </div>
       </div>
-
-      <p className="mt-6 text-center text-xs text-white/30">
-        Highest bid wins each auction and pays the second-highest price.
-      </p>
     </div>
   );
 }
