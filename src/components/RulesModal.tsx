@@ -63,7 +63,7 @@ export default function RulesModal({ onClose }: Props) {
             </h3>
             <div className="rounded-xl border border-white/10 bg-court-900/60 p-4">
               <p className="mb-3 text-sm text-white/70">
-                Your score is calculated from your roster{"\u2019"}s combined stats
+                Your raw score is calculated from your roster{"\u2019"}s combined stats
                 as follows:
               </p>
               <div className="rounded-lg bg-black/30 px-3 py-3 text-center text-sm font-semibold tabular-nums text-white">
@@ -94,6 +94,9 @@ export default function RulesModal({ onClose }: Props) {
               <p className="mt-3 text-xs leading-relaxed text-white/40">
                 Each stat category is totaled across all five players on your roster. This scoring
                 formula encourages constructing well-rounded teams.
+              </p>
+              <p className="mt-3 text-xs leading-relaxed text-white/40">
+                Raw scores are normalized based on current roster size for display purposes.
               </p>
             </div>
           </section>

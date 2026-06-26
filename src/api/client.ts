@@ -43,6 +43,7 @@ export interface CreateRoomParams {
   playerName: string;
   bidSubmissionTimer: number;
   missingPositionPenalty: number;
+  additionalPlayersQueued: number;
 }
 
 export const api = {
@@ -53,6 +54,7 @@ export const api = {
         player_name: params.playerName,
         bid_submission_timer: params.bidSubmissionTimer,
         missing_position_penalty: params.missingPositionPenalty,
+        additional_players_queued: params.additionalPlayersQueued,
       },
     });
   },

@@ -13,6 +13,7 @@ export default function HomePage() {
   const [name, setName] = useState("");
   const [bidTimer, setBidTimer] = useState(30);
   const [penalty, setPenalty] = useState(1);
+  const [extraPlayers, setExtraPlayers] = useState(1);
   const [joinCode, setJoinCode] = useState("");
 
   const [busy, setBusy] = useState(false);
@@ -28,6 +29,7 @@ export default function HomePage() {
         playerName: name.trim(),
         bidSubmissionTimer: bidTimer,
         missingPositionPenalty: penalty,
+        additionalPlayersQueued: extraPlayers,
       });
       if (!res.success || !res.room_code || !res.player_id) {
         setError(friendlyFailure(res.failure_msg));
@@ -166,6 +168,35 @@ export default function HomePage() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div className="mb-5">
+                <label className="label">
+                  Extra players queued per member:{" "}
+                  <span className="font-bold text-flame-400">
+                    +{extraPlayers}
+                  </span>
+                </label>
+                <input
+                  type="range"
+                  min={0}
+                  max={5}
+                  step={1}
+                  value={extraPlayers}
+                  onChange={(e) => setExtraPlayers(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="mt-1 flex justify-between text-xs text-white/40">
+                  <span>0</span>
+                  <span>5</span>
+                </div>
+                <p className="mt-1.5 text-xs text-white/40">
+                  Each member needs 5 players. Queue{" "}
+                  <span className="font-semibold text-white/60">
+                    {extraPlayers}
+                  </span>{" "}
+                  more per member beyond that minimum.
+                </p>
               </div>
 
               <button className="btn-primary w-full" disabled={busy}>

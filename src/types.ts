@@ -14,9 +14,16 @@ export interface NBAPlayer {
   center: boolean;
 }
 
+export type PositionKey = "guard" | "forward" | "center";
+
+// Maps a position to the indices of the players in `nba_team` assigned there by
+// the API's best-lineup solver. Empty ({}) before any lineup has been computed.
+export type Lineup = Partial<Record<PositionKey, number[]>>;
+
 export interface Member {
   name: string;
   nba_team: NBAPlayer[];
+  lineup: Lineup;
   balance: number;
   score: number;
 }

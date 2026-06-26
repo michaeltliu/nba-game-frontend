@@ -1,14 +1,11 @@
 import type { Member } from "../types";
 import { fmtScore, normalizeScore, initials } from "../lib/format";
-import Headshot from "./Headshot";
-import PositionBadges from "./PositionBadges";
+import PositionGroupedRoster from "./PositionGroupedRoster";
 
 interface Props {
   members: Member[];
   myName: string;
 }
-
-const ROSTER_SIZE = 5;
 
 export default function RosterBoard({ members, myName }: Props) {
   const sorted = [...members].sort((a, b) => b.score - a.score);
@@ -20,9 +17,7 @@ export default function RosterBoard({ members, myName }: Props) {
         return (
           <div
             key={`${m.name}-${idx}`}
-            className={`card p-4 ${
-              isMe ? "ring-2 ring-flame-400/50" : ""
-            }`}
+            className={`card p-4 ${isMe ? "ring-2 ring-flame-400/50" : ""}`}
           >
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -53,35 +48,7 @@ export default function RosterBoard({ members, myName }: Props) {
               </div>
             </div>
 
-            <div className="grid grid-cols-5 gap-2">
-              {Array.from({ length: ROSTER_SIZE }).map((_, i) => {
-                const p = m.nba_team[i];
-                return p ? (
-                  <div
-                    key={i}
-                    className="overflow-hidden rounded-lg border border-white/10 bg-court-900/60"
-                    title={p.name}
-                  >
-                    <Headshot
-                      pid={p.pid}
-                      name={p.name}
-                      className="aspect-square w-full"
-                    />
-                    <p className="truncate px-1 pt-1 text-center text-[10px] text-white/60">
-                      {p.name.split(" ").slice(1).join(" ") || p.name}
-                    </p>
-                    <PositionBadges player={p} className="justify-center px-1 pb-1" />
-                  </div>
-                ) : (
-                  <div
-                    key={i}
-                    className="flex aspect-square items-center justify-center rounded-lg border border-dashed border-white/10 bg-white/[0.02] text-white/20"
-                  >
-                    <span className="text-xs">{i + 1}</span>
-                  </div>
-                );
-              })}
-            </div>
+            <PositionGroupedRoster member={m} />
           </div>
         );
       })}
