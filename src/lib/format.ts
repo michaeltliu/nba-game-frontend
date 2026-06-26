@@ -4,7 +4,7 @@ export function fmtStat(n: number, digits = 1): string {
 
 export function normalizeScore(score: number, rosterSize: number): number {
   if (rosterSize === 0 || score === 0) return 0;
-  return Math.pow(score, 1 / rosterSize);
+  return score / Math.pow(rosterSize, 5.6);
 }
 
 export function fmtScore(n: number): string {

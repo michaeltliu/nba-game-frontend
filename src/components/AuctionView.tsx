@@ -70,7 +70,7 @@ export default function AuctionView({
             </p>
           </div>
           <div className="min-w-0 flex-1">
-            <PlayerCard player={nbaPlayer} queuePosition={0} />
+            <PlayerCard player={nbaPlayer} />
           </div>
         </div>
 

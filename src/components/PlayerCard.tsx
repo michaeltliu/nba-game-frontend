@@ -5,7 +5,6 @@ import PositionBadges from "./PositionBadges";
 
 interface Props {
   player: NBAPlayer;
-  queuePosition?: number;
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -19,13 +18,13 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function PlayerCard({ player, queuePosition }: Props) {
+export default function PlayerCard({ player }: Props) {
   return (
     <div className="card animate-pop-in overflow-hidden">
       <div className="relative bg-gradient-to-b from-flame-500/20 to-transparent">
-        {queuePosition !== undefined && (
-          <span className="absolute right-3 top-3 rounded-full bg-court-900/80 px-3 py-1 text-xs font-semibold text-white/70">
-            On the block
+        {player.skipped && (
+          <span className="absolute right-3 top-3 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold uppercase text-amber-300">
+            No bids
           </span>
         )}
         <div className="flex items-end gap-4 px-5 pt-5">
