@@ -102,13 +102,44 @@ export default function RulesModal({ onClose }: Props) {
           </section>
 
           <section>
+            <div className="rounded-xl border border-white/10 bg-court-900/60 p-4">
+              <p className="mb-3 text-sm text-white/70">
+                The ideal roster has 2 guards, 2 forwards, and 1 center. Your{" "}
+                <span className="font-semibold text-white">shortfall</span> is the total number of missing players vs. the ideal. Any shortfall from that target is penalized.
+              </p>
+              <p className="mb-3 text-sm leading-relaxed text-white/60">
+                Your final score is multiplied by{" "}
+                <span className="font-mono font-semibold text-flame-300">penalty<sup className="text-[0.75em]">shortfall</sup></span>,
+                where <span className="font-mono font-semibold text-flame-300">penalty</span> is set by the room:
+              </p>
+              <div className="mb-3 divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10">
+                <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
+                  <span className="text-white/60">No penalty</span>
+                  <span className="font-mono font-semibold text-white">&thinsp;1</span>
+                </div>
+                <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
+                  <span className="text-white/60">Default</span>
+                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2<sup>0.25</sup>)</span>
+                </div>
+                <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
+                  <span className="text-white/60">Strict</span>
+                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2<sup>0.5</sup>)</span>
+                </div>
+              </div>
+              <p className="text-xs leading-relaxed text-white/40">
+                The score shown in-game already has this penalty applied.
+              </p>
+            </div>
+          </section>
+
+          <section>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
               Auction edge cases
             </h3>
             <ul className="space-y-3">
               <RuleItem title="Nobody bids on a player">
                 If everyone skips a player, he{"\u2019"}s sent to the back of the
-                queue. If he comes back around and gets skipped again, he{"\u2019"}s
+                queue. If he gets skipped enough times, he{"\u2019"}s automatically
                 handed to a random team for free.
               </RuleItem>
               <RuleItem title="Two bids tie">
