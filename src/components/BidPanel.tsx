@@ -83,29 +83,37 @@ export default function BidPanel({
         </div>
       </div>
 
-      <input
-        type="range"
-        min={1}
-        max={balance}
-        step={1}
-        value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
-        className="w-full"
-        disabled={disabled || busy}
-      />
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => setAmount((a) => Math.max(1, a - 1))}
+          disabled={disabled || busy || amount <= 1}
+          aria-label="Decrease bid"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-lg font-bold text-white/70 transition hover:bg-white/10 disabled:opacity-40"
+        >
+          {"\u2212"}
+        </button>
 
-      <div className="mt-3 flex gap-2">
-        {[0.25, 0.5, 0.75, 1].map((frac) => (
-          <button
-            key={frac}
-            type="button"
-            onClick={() => setAmount(Math.max(1, Math.floor(balance * frac)))}
-            disabled={disabled || busy}
-            className="flex-1 rounded-lg border border-white/10 bg-white/5 py-1.5 text-xs font-semibold text-white/70 transition hover:bg-white/10 disabled:opacity-40"
-          >
-            {frac === 1 ? "Max" : `${frac * 100}%`}
-          </button>
-        ))}
+        <input
+          type="range"
+          min={1}
+          max={balance}
+          step={1}
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+          className="w-full"
+          disabled={disabled || busy}
+        />
+
+        <button
+          type="button"
+          onClick={() => setAmount((a) => Math.min(balance, a + 1))}
+          disabled={disabled || busy || amount >= balance}
+          aria-label="Increase bid"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-lg font-bold text-white/70 transition hover:bg-white/10 disabled:opacity-40"
+        >
+          +
+        </button>
       </div>
 
       <button
