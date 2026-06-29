@@ -30,21 +30,22 @@ function Stat({
 }
 
 // Returns a tone class by comparing a player's stat to the team average.
-// A 10% threshold avoids coloring noise on stats that are nearly equal.
+// The threshold is stat-specific to avoid coloring noise on nearly-equal values.
 function tone(
   value: number,
   avg: number | undefined,
   lowerIsBetter = false,
+  threshold = 0.3,
 ): string {
   if (avg === undefined || avg === 0) return "text-white";
   const diff = value - avg;
-  if (Math.abs(diff) < avg * 0.1) return "text-white";
+  if (Math.abs(diff) < avg * threshold) return "text-white";
   const better = lowerIsBetter ? diff < 0 : diff > 0;
   return better ? "text-emerald-300" : "text-amber-300";
 }
 
 export default function PlayerCard({ player, teamAvg }: Props) {
-  const tsTone = tone(player.ts, teamAvg?.ts);
+  const tsTone = tone(player.ts, teamAvg?.ts, false, 0.12);
   return (
     <div className="card animate-pop-in overflow-hidden">
       <div className="relative bg-gradient-to-b from-flame-500/20 to-transparent">
@@ -73,12 +74,12 @@ export default function PlayerCard({ player, teamAvg }: Props) {
       </div>
 
       <div className="grid grid-cols-3 gap-2 p-5 sm:grid-cols-6">
-        <Stat label="PTS" value={fmtStat(player.pts)} tone={tone(player.pts, teamAvg?.pts)} />
-        <Stat label="REB" value={fmtStat(player.reb)} tone={tone(player.reb, teamAvg?.reb)} />
-        <Stat label="AST" value={fmtStat(player.ast)} tone={tone(player.ast, teamAvg?.ast)} />
-        <Stat label="BLK" value={fmtStat(player.blk)} tone={tone(player.blk, teamAvg?.blk)} />
-        <Stat label="STL" value={fmtStat(player.stl)} tone={tone(player.stl, teamAvg?.stl)} />
-        <Stat label="TOV" value={fmtStat(player.tov)} tone={tone(player.tov, teamAvg?.tov, true)} />
+        <Stat label="PTS" value={fmtStat(player.pts)} tone={tone(player.pts, teamAvg?.pts, false)} />
+        <Stat label="REB" value={fmtStat(player.reb)} tone={tone(player.reb, teamAvg?.reb, false)} />
+        <Stat label="AST" value={fmtStat(player.ast)} tone={tone(player.ast, teamAvg?.ast, false)} />
+        <Stat label="BLK" value={fmtStat(player.blk)} tone={tone(player.blk, teamAvg?.blk, false, 0.45)} />
+        <Stat label="STL" value={fmtStat(player.stl)} tone={tone(player.stl, teamAvg?.stl, false, 0.45)} />
+        <Stat label="TOV" value={fmtStat(player.tov)} tone={tone(player.tov, teamAvg?.tov, true, 0.45)} />
       </div>
     </div>
   );
