@@ -74,11 +74,15 @@ export default function RulesModal({ onClose }: Props) {
                 <span className="text-flame-300">AST</span>
                 {" \u00d7 "}
                 <span className="text-flame-300">
-                  BLK<sup className="text-[0.75em]">0.8</sup>
+                  BLK<sup className="text-[0.75em]">0.2</sup>
                 </span>
                 {" \u00d7 "}
                 <span className="text-flame-300">
-                  STL<sup className="text-[0.75em]">0.8</sup>
+                  STL<sup className="text-[0.75em]">0.2</sup>
+                </span>
+                {" \u00d7 "}
+                <span className="text-flame-300">
+                  STK<sup className="text-[0.75em]">0.5</sup>
                 </span>
                 {" \u00d7 "}
                 <span className="text-flame-300">
