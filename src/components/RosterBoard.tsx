@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Member } from "../types";
 import { fmtScore, normalizeScore, initials } from "../lib/format";
 import PositionGroupedRoster from "./PositionGroupedRoster";
+import TeamAvgStats from "./TeamAvgStats";
 
 interface Props {
   members: Member[];
@@ -39,6 +40,8 @@ function RosterCard({ member, isMe }: { member: Member; isMe: boolean }) {
           </span>
         </div>
       </div>
+
+      <TeamAvgStats member={member} />
 
       <PositionGroupedRoster member={member} />
     </div>

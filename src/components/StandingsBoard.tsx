@@ -1,6 +1,7 @@
 import type { Member } from "../types";
 import { fmtScore, normalizeScore } from "../lib/format";
 import PositionGroupedRoster from "./PositionGroupedRoster";
+import TeamAvgStats from "./TeamAvgStats";
 
 interface Props {
   members: Member[];
@@ -55,6 +56,7 @@ export default function StandingsBoard({ members, myName }: Props) {
 
             {m.nba_team.length > 0 && (
               <div className="mt-3">
+                <TeamAvgStats member={m} />
                 <PositionGroupedRoster member={m} />
               </div>
             )}

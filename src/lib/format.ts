@@ -1,6 +1,55 @@
+import type { Member, TeamAvgStats } from "../types";
+
 export function fmtStat(n: number, digits = 1): string {
   return n.toFixed(digits);
 }
+
+const AVG_KEYS: (keyof TeamAvgStats)[] = [
+  "pts",
+  "ast",
+  "reb",
+  "blk",
+  "stl",
+  "tov",
+  "ts",
+];
+
+// Returns a member's per-player averages. Prefers the API-computed `avg_stats`,
+// falling back to computing from the current roster (covers the brief window
+// before the server recomputes, or stale/empty `avg_stats`).
+export function rosterAverages(member: Member): TeamAvgStats | null {
+  const roster = member.nba_team;
+  if (!roster || roster.length === 0) return null;
+
+  const provided = member.avg_stats;
+  if (provided && AVG_KEYS.every((k) => typeof provided[k] === "number")) {
+    return provided as TeamAvgStats;
+  }
+
+  const sums: TeamAvgStats = {
+    pts: 0,
+    ast: 0,
+    reb: 0,
+    blk: 0,
+    stl: 0,
+    tov: 0,
+    ts: 0,
+  };
+  for (const p of roster) {
+    for (const k of AVG_KEYS) sums[k] += p[k];
+  }
+  const c = roster.length;
+  return {
+    pts: sums.pts / c,
+    ast: sums.ast / c,
+    reb: sums.reb / c,
+    blk: sums.blk / c,
+    stl: sums.stl / c,
+    tov: sums.tov / c,
+    ts: sums.ts / c,
+  };
+}
+
 
 export function normalizeScore(score: number, rosterSize: number): number {
   if (rosterSize === 0 || score === 0) return 0;

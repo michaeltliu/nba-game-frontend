@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Member, NBAPlayer, PrevAuctionResult } from "../types";
 import { useCountdown } from "../hooks/useCountdown";
+import { rosterAverages } from "../lib/format";
 import CountdownRing from "./CountdownRing";
 import PlayerCard from "./PlayerCard";
 import BidPanel from "./BidPanel";
@@ -70,7 +71,7 @@ export default function AuctionView({
             </p>
           </div>
           <div className="min-w-0 flex-1">
-            <PlayerCard player={nbaPlayer} />
+            <PlayerCard player={nbaPlayer} teamAvg={me ? rosterAverages(me) : null} />
           </div>
         </div>
 

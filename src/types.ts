@@ -20,10 +20,24 @@ export type PositionKey = "guard" | "forward" | "center";
 // the API's best-lineup solver. Empty ({}) before any lineup has been computed.
 export type Lineup = Partial<Record<PositionKey, number[]>>;
 
+// Roster-wide averages computed by the API (each stat summed over the roster and
+// divided by the roster size). Returned as {} until the member wins their first
+// player, so consumers should treat it as partial.
+export interface TeamAvgStats {
+  pts: number;
+  ast: number;
+  reb: number;
+  blk: number;
+  stl: number;
+  tov: number;
+  ts: number;
+}
+
 export interface Member {
   name: string;
   nba_team: NBAPlayer[];
   lineup: Lineup;
+  avg_stats?: Partial<TeamAvgStats>;
   balance: number;
   score: number;
 }
