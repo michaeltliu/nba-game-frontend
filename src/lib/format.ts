@@ -53,13 +53,13 @@ export function rosterAverages(member: Member): TeamAvgStats | null {
 
 export function normalizeScore(score: number, rosterSize: number): number {
   if (rosterSize === 0 || score === 0) return 0;
-  return score / Math.pow(rosterSize, 5.6);
+  return score / Math.pow(rosterSize, 4.9);
 }
 
 export function fmtScore(n: number): string {
   if (n === 0) return "0";
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(2)}K`;
   return n.toFixed(2);
 }
 
