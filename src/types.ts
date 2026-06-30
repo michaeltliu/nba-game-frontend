@@ -83,4 +83,5 @@ export interface Session {
   playerId: string;
   playerName: string;
   isOwner: boolean;
+  createdAt?: number;
 }
