@@ -4,7 +4,7 @@ import { api, ApiError } from "../api/client";
 import { useRoomStatus } from "../hooks/useRoomStatus";
 import { clearSession, loadSession, saveSession } from "../lib/session";
 import { friendlyFailure } from "../lib/format";
-import type { Session } from "../types";
+import type { BotDifficulty, Session } from "../types";
 import RoomHeader from "../components/RoomHeader";
 import LobbyView from "../components/LobbyView";
 import AuctionView from "../components/AuctionView";
@@ -22,6 +22,10 @@ export default function RoomPage() {
 
   const [toast, setToast] = useState<string | null>(null);
   const [starting, setStarting] = useState(false);
+  // Bots selected in the lobby but not yet sent to the backend. They are shown
+  // in the member list optimistically and only created (via add-bot requests)
+  // when the owner starts the game.
+  const [pendingBots, setPendingBots] = useState<BotDifficulty[]>([]);
   const lastBidRoundKey = `hoops-last-bid-round:${roomCode}`;
   const [lastBidRound, setLastBidRound] = useState(() => {
     try {
@@ -41,13 +45,40 @@ export default function RoomPage() {
     [status, session],
   );
 
+  const toggleBot = (difficulty: BotDifficulty) => {
+    setPendingBots((prev) =>
+      prev.includes(difficulty)
+        ? prev.filter((d) => d !== difficulty)
+        : [...prev, difficulty],
+    );
+  };
+
   const handleStart = async () => {
     if (!session) return;
     setStarting(true);
     try {
+      // Commit any locally-selected bots before starting the game, skipping any
+      // difficulty that's already present on the server (e.g. added elsewhere).
+      const existingBotDifficulties = new Set(
+        status?.members.map((m) => m.bot_difficulty).filter(Boolean),
+      );
+      for (const difficulty of pendingBots) {
+        if (existingBotDifficulties.has(difficulty)) continue;
+        const res = await api.addBot(roomCode, session.playerId, difficulty);
+        if (!res.success) {
+          showToast(friendlyFailure(res.failure_msg));
+          await refresh();
+          return;
+        }
+      }
       const res = await api.startGame(roomCode, session.playerId);
-      if (!res.success) showToast(friendlyFailure(res.failure_msg));
-      else await refresh();
+      if (!res.success) {
+        showToast(friendlyFailure(res.failure_msg));
+        await refresh();
+      } else {
+        setPendingBots([]);
+        await refresh();
+      }
     } catch (e) {
       showToast(e instanceof ApiError ? e.message : "Could not start game.");
     } finally {
@@ -119,7 +150,11 @@ export default function RoomPage() {
     status.round_num > 0 ? `Round ${status.round_num}` : undefined;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-6">
+    <div
+      className={`mx-auto max-w-5xl px-4 py-6 ${
+        inLobby ? "flex h-full min-h-0 flex-col overflow-hidden" : ""
+      }`}
+    >
       <RoomHeader
         roomCode={roomCode}
         playerName={session.playerName}
@@ -132,7 +167,9 @@ export default function RoomPage() {
           members={status.members}
           isOwner={session.isOwner}
           starting={starting}
+          pendingBots={pendingBots}
           onStart={handleStart}
+          onToggleBot={toggleBot}
         />
       )}
 

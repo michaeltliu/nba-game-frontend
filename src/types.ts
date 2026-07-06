@@ -33,8 +33,12 @@ export interface TeamAvgStats {
   ts: number;
 }
 
+export type BotDifficulty = "easy" | "medium" | "hard";
+
 export interface Member {
   name: string;
+  // null/undefined for human players; the bot skill level otherwise.
+  bot_difficulty?: BotDifficulty | null;
   nba_team: NBAPlayer[];
   lineup: Lineup;
   avg_stats?: Partial<TeamAvgStats>;
@@ -76,6 +80,12 @@ export interface JoinRoomResponse {
 export interface SimpleResponse {
   success: boolean;
   failure_msg?: string;
+}
+
+export interface AddBotResponse {
+  success: boolean;
+  failure_msg?: string;
+  bot_name?: string;
 }
 
 export interface Session {

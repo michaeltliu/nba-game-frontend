@@ -4,10 +4,12 @@ import RoomPage from "./pages/RoomPage";
 
 export default function App() {
   return (
+    <div className="h-full">
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/room/:code" element={<RoomPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </div>
   );
 }

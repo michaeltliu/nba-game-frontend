@@ -83,6 +83,9 @@ export const FAILURE_MESSAGES: Record<string, string> = {
   BAD_ROUND_NUMBER: "This round just ended \u2014 hang tight.",
   INVALID_BID_AMOUNT: "That bid amount isn't valid.",
   ROSTER_FULL: "Your roster is already full.",
+  INVALID_DIFFICULTY: "That bot difficulty isn't valid.",
+  DIFFICULTY_ALREADY_ADDED: "A bot of that difficulty is already in the room.",
+  NAME_TAKEN: "Couldn't name the bot \u2014 try again.",
 };
 
 export function friendlyFailure(msg?: string): string {

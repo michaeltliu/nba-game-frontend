@@ -19,10 +19,7 @@ export default function ResultsView({
   return (
     <div className="mx-auto max-w-xl">
       <div className="mb-6 text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-flame-400">
-          Final Results
-        </p>
-        <h1 className="mt-1 text-3xl font-black">Game Over</h1>
+        <h1 className="mt-1 text-3xl font-black">Final Standings</h1>
       </div>
 
       <StandingsBoard members={finalMembers} myName={myName} />

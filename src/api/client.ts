@@ -1,4 +1,6 @@
 import type {
+  AddBotResponse,
+  BotDifficulty,
   CreateRoomResponse,
   JoinRoomResponse,
   RoomStatus,
@@ -69,6 +71,17 @@ export const api = {
   roomStatus(roomCode: string): Promise<RoomStatus> {
     return request<RoomStatus>(
       `/rooms/${encodeURIComponent(roomCode)}/status`,
+    );
+  },
+
+  addBot(
+    roomCode: string,
+    playerId: string,
+    difficulty: BotDifficulty,
+  ): Promise<AddBotResponse> {
+    return request<AddBotResponse>(
+      `/rooms/${encodeURIComponent(roomCode)}/add-bot`,
+      { method: "POST", playerId, body: { difficulty } },
     );
   },
 
