@@ -28,6 +28,51 @@ function PlayerChip({ player }: { player: NBAPlayer }) {
   );
 }
 
+function PositionGroup({
+  label,
+  required,
+  players,
+}: {
+  label: string;
+  required: number;
+  players: NBAPlayer[];
+}) {
+  const filled = players.length >= required;
+
+  return (
+    <div>
+      <div className="mb-1.5 flex items-center gap-2">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
+          {label}
+        </span>
+        <span
+          className={`text-[10px] font-semibold tabular-nums ${
+            filled ? "text-emerald-400/70" : "text-amber-400/80"
+          }`}
+          title={
+            filled
+              ? "Position requirement met"
+              : "Unfilled \u2014 incurs scoring penalty"
+          }
+        >
+          {players.length}/{required}
+        </span>
+      </div>
+      {players.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
+          {players.map((p, i) => (
+            <PlayerChip key={i} player={p} />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] px-3 py-1.5 text-[11px] text-white/25">
+          None assigned
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function PositionGroupedRoster({ member }: { member: Member }) {
   const hasLineup = Object.keys(member.lineup ?? {}).length > 0;
 
@@ -53,69 +98,57 @@ export default function PositionGroupedRoster({ member }: { member: Member }) {
   // Track placed players so any leftovers (e.g. an unsolvable lineup) still get
   // shown rather than silently dropped.
   const assigned = new Set<number>();
+  const groups = POSITION_GROUPS.map((group) => {
+    const indices = member.lineup[group.key] ?? [];
+    const players = indices
+      .map((i) => {
+        assigned.add(i);
+        return member.nba_team[i];
+      })
+      .filter(Boolean);
+
+    return { ...group, players };
+  });
+  const populatedGroups = groups.filter((group) => group.players.length > 0);
+  const emptyGroups = groups.filter((group) => group.players.length === 0);
+  const leftovers = member.nba_team.filter((_, i) => !assigned.has(i));
 
   return (
     <div className="space-y-3">
-      {POSITION_GROUPS.map((group) => {
-        const indices = member.lineup[group.key] ?? [];
-        const players = indices
-          .map((i) => {
-            assigned.add(i);
-            return member.nba_team[i];
-          })
-          .filter(Boolean);
-        const filled = players.length >= group.required;
+      {populatedGroups.length > 0 && (
+        <div className="flex flex-wrap items-start gap-x-4 gap-y-3">
+          {populatedGroups.map((group) => (
+            <PositionGroup
+              key={group.key}
+              label={group.label}
+              required={group.required}
+              players={group.players}
+            />
+          ))}
+        </div>
+      )}
 
-        return (
-          <div key={group.key}>
-            <div className="mb-1.5 flex items-center gap-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
-                {group.label}
-              </span>
-              <span
-                className={`text-[10px] font-semibold tabular-nums ${
-                  filled ? "text-emerald-400/70" : "text-amber-400/80"
-                }`}
-                title={
-                  filled
-                    ? "Position requirement met"
-                    : "Unfilled \u2014 incurs scoring penalty"
-                }
-              >
-                {players.length}/{group.required}
-              </span>
-            </div>
-            {players.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {players.map((p, i) => (
-                  <PlayerChip key={i} player={p} />
-                ))}
-              </div>
-            ) : (
-              <div className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] px-3 py-2 text-[11px] text-white/25">
-                None assigned
-              </div>
-            )}
+      {leftovers.length > 0 && (
+        <div>
+          <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/50">
+            Bench
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {leftovers.map((p, i) => (
+              <PlayerChip key={i} player={p} />
+            ))}
           </div>
-        );
-      })}
+        </div>
+      )}
 
-      {(() => {
-        const leftovers = member.nba_team.filter((_, i) => !assigned.has(i));
-        if (leftovers.length === 0) return null;
-        return (
-          <div>
-            <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/50">
-              Bench
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {leftovers.map((p, i) => (
-                <PlayerChip key={i} player={p} />
-              ))}
-            </div>
-          </div>
-        );
-      })()}
+      {emptyGroups.map((group) => (
+        <PositionGroup
+          key={group.key}
+          label={group.label}
+          required={group.required}
+          players={group.players}
+        />
+      ))}
     </div>
   );
 }
