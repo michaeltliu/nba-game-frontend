@@ -11,12 +11,11 @@ interface UseRoomStatusResult {
 
 /**
  * Polls the room status endpoint. Polling is what actually advances the game,
- * since auctions resolve lazily on the server when status is fetched. We poll
- * a bit faster while a round is live so timer expiry is reflected promptly.
+ * since auctions resolve lazily on the server when status is fetched.
  */
 export function useRoomStatus(
   roomCode: string | undefined,
-  pollMs = 1000,
+  pollMs = 2000,
 ): UseRoomStatusResult {
   const [status, setStatus] = useState<RoomStatus | null>(null);
   const [error, setError] = useState<string | null>(null);
