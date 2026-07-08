@@ -13,7 +13,7 @@ interface Props {
 
 const BOT_LEVELS: { value: BotDifficulty; label: string; blurb: string }[] = [
   { value: "easy", label: "Easy", blurb: "Understands player value" },
-  { value: "medium", label: "Medium", blurb: "Coming soon" },
+  { value: "medium", label: "Medium", blurb: "Bids aggressively" },
   { value: "hard", label: "Hard", blurb: "Coming soon" },
 ];
 

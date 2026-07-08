@@ -8,6 +8,7 @@ export interface NBAPlayer {
   stl: number;
   tov: number;
   ts: number;
+  tsa: number;
   skipped: number;
   guard: boolean;
   forward: boolean;

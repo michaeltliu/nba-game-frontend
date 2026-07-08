@@ -66,9 +66,10 @@ export default function PlayerCard({ player, teamAvg }: Props) {
             </p>
             <h2 className="text-xl font-black leading-tight sm:text-2xl">{player.name}</h2>
             <PositionBadges player={player} className="mt-1.5" />
-            <p className={`mt-2 text-sm font-bold ${tsTone === "text-white" ? "text-white/50" : tsTone}`}>
+            <p className={`mt-2 text-sm font-bold ${tsTone === "text-white" ? "text-white/75" : tsTone}`}>
               TS%: {(player.ts * 100).toFixed(1)}%
             </p>
+            <p className="mt-1 text-sm font-bold text-white/75">TS Attempts: {player.tsa.toFixed(1)}</p>
           </div>
         </div>
       </div>

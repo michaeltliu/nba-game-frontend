@@ -96,8 +96,8 @@ export default function RulesModal({ onClose }: Props) {
                 <span className="text-flame-300">TOV<sup className="text-[0.75em]">0.5</sup></span>
               </div>
               <p className="mt-3 text-xs leading-relaxed text-white/40">
-                Each stat category is totaled across all five players on your roster. This scoring
-                formula encourages constructing well-rounded teams.
+                Each stat category is totaled across all five players on your roster. TS% is weighted by each player's true shooting attempts.
+                The scoring formula favors well-rounded teams.
               </p>
               <p className="mt-3 text-xs leading-relaxed text-white/40">
                 Raw scores are normalized based on current roster size for display purposes.
@@ -109,12 +109,12 @@ export default function RulesModal({ onClose }: Props) {
             <div className="rounded-xl border border-white/10 bg-court-900/60 p-4">
               <p className="mb-3 text-sm text-white/70">
                 The ideal roster has 2 guards, 2 forwards, and 1 center. Your{" "}
-                <span className="font-semibold text-white">shortfall</span> is the total number of missing players vs. the ideal. Any shortfall from that target is penalized.
+                <span className="font-mono font-semibold text-white">shortfall</span> is the total number of missing players vs. the ideal. Any shortfall from that target is penalized.
               </p>
               <p className="mb-3 text-sm leading-relaxed text-white/60">
                 Your final score is multiplied by{" "}
-                <span className="font-mono font-semibold text-flame-300">penalty<sup className="text-[0.75em]">shortfall</sup></span>,
-                where <span className="font-mono font-semibold text-flame-300">penalty</span> is set by the room:
+                <span className="font-mono font-semibold text-white">penalty<sup className="text-[0.75em]">shortfall</sup></span>,
+                where <span className="font-mono font-semibold text-white">penalty</span> is set by the room:
               </p>
               <div className="mb-3 divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10">
                 <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
@@ -123,11 +123,11 @@ export default function RulesModal({ onClose }: Props) {
                 </div>
                 <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
                   <span className="text-white/60">Default</span>
-                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2<sup>0.25</sup>)</span>
+                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2)<sup>0.25</sup></span>
                 </div>
                 <div className="flex items-center justify-between bg-white/[0.03] px-3 py-2 text-sm">
                   <span className="text-white/60">Strict</span>
-                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2<sup>0.5</sup>)</span>
+                  <span className="font-mono font-semibold text-flame-300">&thinsp;(1&thinsp;/&thinsp;2)<sup>0.5</sup></span>
                 </div>
               </div>
               <p className="text-xs leading-relaxed text-white/40">
