@@ -82,7 +82,7 @@ export default function RulesModal({ onClose }: Props) {
                 </span>
                 {" \u00d7 "}
                 <span className="text-flame-300">
-                  STK<sup className="text-[0.75em]">0.5</sup>
+                  STK<sup className="text-[0.75em]">0.4</sup>
                 </span>
                 {" \u00d7 "}
                 <span className="text-flame-300">
