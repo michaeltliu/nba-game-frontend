@@ -159,6 +159,7 @@ export default function RoomPage() {
         roomCode={roomCode}
         playerName={session.playerName}
         roundLabel={roundLabel}
+        roomSettings={status.room_settings}
       />
 
       {inLobby && (

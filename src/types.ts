@@ -53,6 +53,12 @@ export interface PrevAuctionResult {
   price_paid: number;
 }
 
+export interface RoomSettings {
+  missing_position_penalty: number;
+  bid_timer: number;
+  additional_players_queued: number;
+}
+
 export interface RoomStatus {
   success: boolean;
   failure_msg?: string;
@@ -63,6 +69,7 @@ export interface RoomStatus {
   bids_received: number;
   prev_auction_result: PrevAuctionResult | null;
   prev_game_final: Member[];
+  room_settings?: RoomSettings;
 }
 
 export interface CreateRoomResponse {

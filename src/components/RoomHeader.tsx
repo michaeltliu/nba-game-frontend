@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { RoomSettings } from "../types";
 import RulesModal from "./RulesModal";
+import RoomSettingsModal from "./RoomSettingsModal";
 
 interface Props {
   roomCode: string;
   playerName: string;
   roundLabel?: string;
+  roomSettings?: RoomSettings;
 }
 
 export default function RoomHeader({
   roomCode,
   playerName,
   roundLabel,
+  roomSettings,
 }: Props) {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const copy = async () => {
     try {
@@ -41,6 +46,31 @@ export default function RoomHeader({
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/70">
             {roundLabel}
           </span>
+        )}
+        {roomSettings && (
+          <button
+            onClick={() => setShowSettings(true)}
+            className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/60 transition hover:bg-white/10 hover:text-white"
+            title="Room settings"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M4 6h16" />
+              <path d="M4 12h16" />
+              <path d="M4 18h16" />
+              <path d="M8 4v4" />
+              <path d="M16 10v4" />
+              <path d="M11 16v4" />
+            </svg>
+            <span className="hidden sm:inline">Settings</span>
+          </button>
         )}
         <button
           onClick={() => setShowRules(true)}
@@ -81,6 +111,12 @@ export default function RoomHeader({
       </div>
 
       {showRules && <RulesModal onClose={() => setShowRules(false)} />}
+      {showSettings && roomSettings && (
+        <RoomSettingsModal
+          settings={roomSettings}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </header>
   );
 }
