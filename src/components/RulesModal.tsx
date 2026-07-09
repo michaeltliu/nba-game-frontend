@@ -97,7 +97,7 @@ export default function RulesModal({ onClose }: Props) {
               </div>
               <p className="mt-3 text-xs leading-relaxed text-white/40">
                 Each stat category is totaled across all five players on your roster. TS% is weighted by each player's true shooting attempts.
-                The scoring formula favors well-rounded teams.
+                The scoring formula rewards teams for being strong in all stat categories.
               </p>
               <p className="mt-3 text-xs leading-relaxed text-white/40">
                 Raw scores are normalized based on current roster size for display purposes.

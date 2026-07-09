@@ -31,7 +31,7 @@ async function request<T>(
     });
   } catch {
     throw new ApiError(
-      "Could not reach the game server. Is the API running and CORS enabled?",
+      "Could not reach the game server. Please wait...",
     );
   }
 
