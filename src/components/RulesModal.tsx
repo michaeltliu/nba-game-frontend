@@ -67,7 +67,9 @@ export default function RulesModal({ onClose }: Props) {
                 as follows:
               </p>
               <div className="rounded-lg bg-black/30 px-3 py-3 text-center text-sm font-semibold tabular-nums text-white">
-                <span className="text-flame-300">PTS</span>
+                <span className="text-flame-300">
+                  PTS<sup className="text-[0.75em]">1.2</sup>
+                </span>
                 {" \u00d7 "}
                 <span className="text-flame-300">REB</span>
                 {" \u00d7 "}

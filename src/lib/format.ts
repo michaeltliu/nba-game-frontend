@@ -53,7 +53,7 @@ export function rosterAverages(member: Member): TeamAvgStats | null {
 
 export function normalizeScore(score: number, rosterSize: number): number {
   if (rosterSize === 0 || score === 0) return 0;
-  return score / Math.pow(rosterSize, 3.3);
+  return score / Math.pow(rosterSize, 3.5); // 1.2 + 1 + 1 + 0.2 + 0.2 + 0.4 - 0.5
 }
 
 export function fmtScore(n: number): string {
