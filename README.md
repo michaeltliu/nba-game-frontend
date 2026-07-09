@@ -9,7 +9,7 @@ Built with **React + Vite + TypeScript + Tailwind CSS**.
 
 ## Live site
 
-https://hoopsauction.dev/
+https://hoopsauction.app/
 
 ## Features
 
