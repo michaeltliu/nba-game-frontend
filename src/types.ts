@@ -90,10 +90,15 @@ export interface SimpleResponse {
   failure_msg?: string;
 }
 
+export interface AddedBot {
+  bot_name: string;
+  difficulty: BotDifficulty;
+}
+
 export interface AddBotResponse {
   success: boolean;
   failure_msg?: string;
-  bot_name?: string;
+  bots?: AddedBot[];
 }
 
 export interface Session {

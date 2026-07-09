@@ -23,7 +23,7 @@ export default function RoomPage() {
   const [toast, setToast] = useState<string | null>(null);
   const [starting, setStarting] = useState(false);
   // Bots selected in the lobby but not yet sent to the backend. They are shown
-  // in the member list optimistically and only created (via add-bot requests)
+  // in the member list optimistically and only created (via one add-bot request)
   // when the owner starts the game.
   const [pendingBots, setPendingBots] = useState<BotDifficulty[]>([]);
   const lastBidRoundKey = `hoops-last-bid-round:${roomCode}`;
@@ -62,9 +62,11 @@ export default function RoomPage() {
       const existingBotDifficulties = new Set(
         status?.members.map((m) => m.bot_difficulty).filter(Boolean),
       );
-      for (const difficulty of pendingBots) {
-        if (existingBotDifficulties.has(difficulty)) continue;
-        const res = await api.addBot(roomCode, session.playerId, difficulty);
+      const toAdd = pendingBots.filter(
+        (d) => !existingBotDifficulties.has(d),
+      );
+      if (toAdd.length > 0) {
+        const res = await api.addBot(roomCode, session.playerId, toAdd);
         if (!res.success) {
           showToast(friendlyFailure(res.failure_msg));
           await refresh();

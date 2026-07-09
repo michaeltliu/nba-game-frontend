@@ -77,11 +77,11 @@ export const api = {
   addBot(
     roomCode: string,
     playerId: string,
-    difficulty: BotDifficulty,
+    difficulties: BotDifficulty[],
   ): Promise<AddBotResponse> {
     return request<AddBotResponse>(
       `/rooms/${encodeURIComponent(roomCode)}/add-bot`,
-      { method: "POST", playerId, body: { difficulty } },
+      { method: "POST", playerId, body: { difficulties } },
     );
   },
 
