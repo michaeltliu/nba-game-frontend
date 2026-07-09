@@ -7,6 +7,10 @@ players by their combined statistical score.
 
 Built with **React + Vite + TypeScript + Tailwind CSS**.
 
+## Live site
+
+https://hoopsauction.dev/
+
 ## Features
 
 - Create or join a room with a 5-letter code (shareable link supported)
