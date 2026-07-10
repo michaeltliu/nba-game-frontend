@@ -118,7 +118,7 @@ export default function HomePage() {
             </label>
             <input
               id="name"
-              className="input"
+              className="input !py-2.5"
               maxLength={24}
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -131,89 +131,127 @@ export default function HomePage() {
                 <label className="label" htmlFor="nba-era">
                   NBA era
                 </label>
-                <select
-                  id="nba-era"
-                  className="input"
-                  value={nbaEra}
-                  onChange={(e) => setNbaEra(e.target.value as NbaEra)}
-                >
-                  {NBA_ERA_OPTIONS.map(({ value, label }) => (
-                    <option key={value} value={value} className="bg-court-900">
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="mb-4">
-                <label className="label">
-                  Bid timer per round:{" "}
-                  <span className="font-bold text-flame-400">
-                    {bidTimer}s
-                  </span>
-                </label>
-                <input
-                  type="range"
-                  min={10}
-                  max={120}
-                  step={5}
-                  value={bidTimer}
-                  onChange={(e) => setBidTimer(Number(e.target.value))}
-                  className="w-full"
-                />
-                <div className="mt-1 flex justify-between text-xs text-white/40">
-                  <span>10s</span>
-                  <span>120s</span>
+                <div className="relative">
+                  <select
+                    id="nba-era"
+                    className="input appearance-none !py-2.5 !pr-11"
+                    value={nbaEra}
+                    onChange={(e) => setNbaEra(e.target.value as NbaEra)}
+                  >
+                    {NBA_ERA_OPTIONS.map(({ value, label }) => (
+                      <option key={value} value={value} className="bg-court-900">
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/40"
+                  >
+                    <path
+                      d="m5 7.5 5 5 5-5"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
               </div>
 
-              <div className="mb-5">
-                <label className="label">Missing-position penalty</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {(
-                    [
-                      { value: 0, label: "None" },
-                      { value: 1, label: "Default" },
-                      { value: 2, label: "Strict" },
-                    ] as const
-                  ).map(({ value, label }) => (
-                    <button
-                      type="button"
-                      key={value}
-                      onClick={() => setPenalty(value)}
-                      className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all ${
-                        penalty === value
-                          ? "border-flame-400 bg-flame-500/15 text-flame-400"
-                          : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <details className="group mb-5 overflow-hidden rounded-xl border border-white/10 bg-court-900/40">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-2 text-sm font-semibold text-white/70 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-flame-400/70 [&::-webkit-details-marker]:hidden">
+                  More settings
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                    className="h-5 w-5 text-white/40 transition-transform duration-200 group-open:rotate-180"
+                  >
+                    <path
+                      d="m5 7.5 5 5 5-5"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </summary>
 
-              <div className="mb-5">
-                <label className="label">
-                  Extra players queued per member:{" "}
-                  <span className="font-bold text-flame-400">
-                    +{extraPlayers}
-                  </span>
-                </label>
-                <input
-                  type="range"
-                  min={0}
-                  max={3}
-                  step={1}
-                  value={extraPlayers}
-                  onChange={(e) => setExtraPlayers(Number(e.target.value))}
-                  className="w-full"
-                />
-                <div className="mt-1 flex justify-between text-xs text-white/40">
-                  <span>0</span>
-                  <span>3</span>
+                <div className="border-t border-white/10 px-4 pb-4 pt-4">
+                  <div className="mb-4">
+                    <label className="label">
+                      Bid timer per round:{" "}
+                      <span className="font-bold text-flame-400">
+                        {bidTimer}s
+                      </span>
+                    </label>
+                    <input
+                      type="range"
+                      min={10}
+                      max={120}
+                      step={5}
+                      value={bidTimer}
+                      onChange={(e) => setBidTimer(Number(e.target.value))}
+                      className="w-full"
+                    />
+                    <div className="mt-1 flex justify-between text-xs text-white/40">
+                      <span>10s</span>
+                      <span>120s</span>
+                    </div>
+                  </div>
+
+                  <div className="mb-5">
+                    <label className="label">Missing-position penalty</label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {(
+                        [
+                          { value: 0, label: "None" },
+                          { value: 1, label: "Default" },
+                          { value: 2, label: "Strict" },
+                        ] as const
+                      ).map(({ value, label }) => (
+                        <button
+                          type="button"
+                          key={value}
+                          onClick={() => setPenalty(value)}
+                          className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all ${
+                            penalty === value
+                              ? "border-flame-400 bg-flame-500/15 text-flame-400"
+                              : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="label">
+                      Extra players queued per member:{" "}
+                      <span className="font-bold text-flame-400">
+                        +{extraPlayers}
+                      </span>
+                    </label>
+                    <input
+                      type="range"
+                      min={0}
+                      max={3}
+                      step={1}
+                      value={extraPlayers}
+                      onChange={(e) => setExtraPlayers(Number(e.target.value))}
+                      className="w-full"
+                    />
+                    <div className="mt-1 flex justify-between text-xs text-white/40">
+                      <span>0</span>
+                      <span>3</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </details>
 
               <button className="btn-primary w-full" disabled={busy}>
                 {busy ? "Creating\u2026" : "Create Room"}
