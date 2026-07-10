@@ -1,4 +1,14 @@
-import type { Member, TeamAvgStats } from "../types";
+import type { Member, NbaEra, TeamAvgStats } from "../types";
+
+export const NBA_ERA_OPTIONS: { value: NbaEra; label: string }[] = [
+  { value: "2025_26", label: "2025–26 season" },
+  { value: "2020_26", label: "2020–26 era" },
+  { value: "2010_20", label: "2010–20 era" },
+];
+
+export function formatNbaEra(era: NbaEra | string): string {
+  return NBA_ERA_OPTIONS.find((o) => o.value === era)?.label ?? era;
+}
 
 export function fmtStat(n: number, digits = 1): string {
   return n.toFixed(digits);

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import { saveSession } from "../lib/session";
-import { friendlyFailure } from "../lib/format";
+import { friendlyFailure, NBA_ERA_OPTIONS } from "../lib/format";
+import type { NbaEra } from "../types";
 
 type Tab = "create" | "join";
 
@@ -11,7 +12,8 @@ export default function HomePage() {
   const [tab, setTab] = useState<Tab>("create");
 
   const [name, setName] = useState("");
-  const [bidTimer, setBidTimer] = useState(30);
+  const [nbaEra, setNbaEra] = useState<NbaEra>("2025_26");
+  const [bidTimer, setBidTimer] = useState(45);
   const [penalty, setPenalty] = useState(1);
   const [extraPlayers, setExtraPlayers] = useState(1);
   const [joinCode, setJoinCode] = useState("");
@@ -30,6 +32,7 @@ export default function HomePage() {
         bidSubmissionTimer: bidTimer,
         missingPositionPenalty: penalty,
         additionalPlayersQueued: extraPlayers,
+        nbaEra,
       });
       if (!res.success || !res.room_code || !res.player_id) {
         setError(friendlyFailure(res.failure_msg));
@@ -79,9 +82,6 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex min-h-full max-w-lg flex-col items-center justify-center px-4 py-12">
       <div className="mb-8 text-center">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-flame-400/30 bg-flame-500/10 px-4 py-1.5 text-sm font-medium text-flame-400">
-          2025-26 NBA Season
-        </div>
         <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
           Hoops <span className="text-flame-500">Auction</span>
         </h1>
@@ -119,7 +119,6 @@ export default function HomePage() {
             <input
               id="name"
               className="input"
-              placeholder="e.g. Mike"
               maxLength={24}
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -128,6 +127,24 @@ export default function HomePage() {
 
           {tab === "create" ? (
             <form onSubmit={handleCreate}>
+              <div className="mb-4">
+                <label className="label" htmlFor="nba-era">
+                  NBA era
+                </label>
+                <select
+                  id="nba-era"
+                  className="input"
+                  value={nbaEra}
+                  onChange={(e) => setNbaEra(e.target.value as NbaEra)}
+                >
+                  {NBA_ERA_OPTIONS.map(({ value, label }) => (
+                    <option key={value} value={value} className="bg-court-900">
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="mb-4">
                 <label className="label">
                   Bid timer per round:{" "}

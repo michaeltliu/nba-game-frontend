@@ -3,6 +3,7 @@ import type {
   BotDifficulty,
   CreateRoomResponse,
   JoinRoomResponse,
+  NbaEra,
   RoomStatus,
   SimpleResponse,
 } from "../types";
@@ -46,6 +47,7 @@ export interface CreateRoomParams {
   bidSubmissionTimer: number;
   missingPositionPenalty: number;
   additionalPlayersQueued: number;
+  nbaEra: NbaEra;
 }
 
 export const api = {
@@ -57,6 +59,7 @@ export const api = {
         bid_submission_timer: params.bidSubmissionTimer,
         missing_position_penalty: params.missingPositionPenalty,
         additional_players_queued: params.additionalPlayersQueued,
+        nba_era: params.nbaEra,
       },
     });
   },

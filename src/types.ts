@@ -36,6 +36,8 @@ export interface TeamAvgStats {
 
 export type BotDifficulty = "easy" | "medium" | "hard";
 
+export type NbaEra = "2010_20" | "2020_26" | "2025_26";
+
 export interface Member {
   name: string;
   // null/undefined for human players; the bot skill level otherwise.
@@ -57,6 +59,7 @@ export interface RoomSettings {
   missing_position_penalty: number;
   bid_timer: number;
   additional_players_queued: number;
+  nba_era: NbaEra;
 }
 
 export interface RoomStatus {

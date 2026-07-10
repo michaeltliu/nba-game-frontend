@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { formatNbaEra } from "../lib/format";
 import type { RoomSettings } from "../types";
 
 interface Props {
@@ -79,6 +80,11 @@ export default function RoomSettingsModal({ settings, onClose }: Props) {
         </div>
 
         <div className="space-y-3 overflow-y-auto px-5 py-5">
+          <SettingItem
+            label="NBA era"
+            value={formatNbaEra(settings.nba_era)}
+            detail="Player pool and stats are drawn from this era."
+          />
           <SettingItem
             label="Bid timer"
             value={`${settings.bid_timer}s`}
