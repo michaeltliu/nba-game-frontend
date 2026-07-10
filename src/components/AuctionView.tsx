@@ -59,7 +59,7 @@ export default function AuctionView({
   const timeUp = remaining <= 0;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
       <div className="min-w-0 space-y-5">
         {prevResult && <PrevResultBanner result={prevResult} />}
 
