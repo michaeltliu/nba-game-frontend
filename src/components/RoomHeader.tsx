@@ -41,9 +41,9 @@ export default function RoomHeader({
         Hoops <span className="text-flame-500">Auction</span>
       </button>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         {roundLabel && (
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/70">
+          <span className="shrink-0 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/70">
             {roundLabel}
           </span>
         )}
@@ -97,11 +97,11 @@ export default function RoomHeader({
           className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm transition hover:bg-white/10"
           title="Copy room code"
         >
-          <span className="text-white/40">Room</span>
+          <span className="hidden text-white/40 sm:inline">Room</span>
           <span className="font-bold tracking-[0.2em] text-flame-400">
             {roomCode}
           </span>
-          <span className="text-xs text-white/40">
+          <span className="hidden text-xs text-white/40 sm:inline">
             {copied ? "Copied!" : "Copy"}
           </span>
         </button>

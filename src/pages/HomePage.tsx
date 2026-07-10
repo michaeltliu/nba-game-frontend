@@ -119,6 +119,7 @@ export default function HomePage() {
             <input
               id="name"
               className="input !py-2.5"
+              placeholder="LeBron James"
               maxLength={24}
               value={name}
               onChange={(e) => setName(e.target.value)}
