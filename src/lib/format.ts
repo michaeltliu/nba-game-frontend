@@ -4,6 +4,8 @@ export const NBA_ERA_OPTIONS: { value: NbaEra; label: string }[] = [
   { value: "2025_26", label: "2025–26 season" },
   { value: "2020_26", label: "2020–26 era" },
   { value: "2010_20", label: "2010–20 era" },
+  { value: "2000_10", label: "2000-10 era" },
+  { value: "1990_00", label: "1990-00 era" },
 ];
 
 export function formatNbaEra(era: NbaEra | string): string {

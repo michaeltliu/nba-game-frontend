@@ -36,7 +36,7 @@ export interface TeamAvgStats {
 
 export type BotDifficulty = "easy" | "medium" | "hard";
 
-export type NbaEra = "2010_20" | "2020_26" | "2025_26";
+export type NbaEra = "1990_00" | "2000_10" | "2010_20" | "2020_26" | "2025_26";
 
 export interface Member {
   name: string;
