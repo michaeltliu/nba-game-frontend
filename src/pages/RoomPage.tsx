@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import { useRoomStatus } from "../hooks/useRoomStatus";
@@ -34,6 +34,20 @@ export default function RoomPage() {
       return 0;
     }
   });
+
+  // Clear the persisted "bid this round" marker when a game ends (or we're in
+  // lobby/results). Otherwise after "Play Again" a prior-game round number can
+  // match the new game's round 1 and falsely show "Bid locked in".
+  useEffect(() => {
+    if (status && status.round_num === 0 && lastBidRound !== 0) {
+      setLastBidRound(0);
+      try {
+        sessionStorage.removeItem(lastBidRoundKey);
+      } catch {
+        /* storage unavailable; ignore */
+      }
+    }
+  }, [status, lastBidRound, lastBidRoundKey]);
 
   const showToast = (msg: string) => {
     setToast(msg);
