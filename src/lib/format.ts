@@ -1,11 +1,12 @@
 import type { Member, NbaEra, TeamAvgStats } from "../types";
 
 export const NBA_ERA_OPTIONS: { value: NbaEra; label: string }[] = [
-  { value: "2025_26", label: "2025–26 season" },
-  { value: "2020_26", label: "2020–26 era" },
-  { value: "2010_20", label: "2010–20 era" },
-  { value: "2000_10", label: "2000-10 era" },
-  { value: "1990_00", label: "1990-00 era" },
+  { value: "averages_2025_26", label: "2025–26 season" },
+  { value: "averages_2020_26", label: "2020–26 averages" },
+  { value: "averages_2010_20", label: "2010–20 averages" },
+  { value: "averages_2000_10", label: "2000–10 averages" },
+  { value: "averages_1990_00", label: "1990–00 averages" },
+  { value: "peaks_1990_00", label: "1990–00 peaks" },
 ];
 
 export function formatNbaEra(era: NbaEra | string): string {

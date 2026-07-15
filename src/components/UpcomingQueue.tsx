@@ -42,6 +42,7 @@ export default function UpcomingQueue({ upcoming }: Props) {
               <Headshot
                 pid={p.pid}
                 name={p.name}
+                peak={p.peak}
                 className="h-20 w-full rounded-lg bg-court-700"
               />
               <p className="mt-1.5 truncate text-center text-xs font-medium text-white/80">

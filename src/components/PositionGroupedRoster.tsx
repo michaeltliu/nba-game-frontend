@@ -18,6 +18,8 @@ function PlayerChip({ player }: { player: NBAPlayer }) {
       <Headshot
         pid={player.pid}
         name={player.name}
+        peak={player.peak}
+        peakBadgeClassName="origin-bottom-right scale-90"
         className="aspect-square w-full"
       />
       <p className="truncate px-1 pt-1 text-center text-[10px] text-white/60">

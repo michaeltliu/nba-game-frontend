@@ -58,6 +58,7 @@ export default function PlayerCard({ player, teamAvg }: Props) {
           <Headshot
             pid={player.pid}
             name={player.name}
+            peak={player.peak}
             className="h-24 w-24 shrink-0 rounded-2xl border border-white/10 bg-court-700 sm:h-28 sm:w-28"
           />
           <div className="min-w-0 pb-2">

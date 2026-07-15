@@ -12,7 +12,7 @@ export default function HomePage() {
   const [tab, setTab] = useState<Tab>("create");
 
   const [name, setName] = useState("");
-  const [nbaEra, setNbaEra] = useState<NbaEra>("2025_26");
+  const [nbaEra, setNbaEra] = useState<NbaEra>("averages_2025_26");
   const [bidTimer, setBidTimer] = useState(45);
   const [penalty, setPenalty] = useState(1);
   const [extraPlayers, setExtraPlayers] = useState(1);

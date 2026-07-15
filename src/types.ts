@@ -1,6 +1,7 @@
 export interface NBAPlayer {
   name: string;
   pid: number;
+  peak: number;
   pts: number;
   ast: number;
   reb: number;
@@ -36,7 +37,13 @@ export interface TeamAvgStats {
 
 export type BotDifficulty = "easy" | "medium" | "hard";
 
-export type NbaEra = "1990_00" | "2000_10" | "2010_20" | "2020_26" | "2025_26";
+export type NbaEra =
+  | "averages_1990_00"
+  | "averages_2000_10"
+  | "averages_2010_20"
+  | "averages_2020_26"
+  | "averages_2025_26"
+  | "peaks_1990_00";
 
 export interface Member {
   name: string;
