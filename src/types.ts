@@ -44,7 +44,8 @@ export type NbaEra =
   | "averages_2010_20"
   | "averages_2020_26"
   | "averages_2025_26"
-  | "peaks_1990_00";
+  | "peaks_1990_00"
+  | "peaks_2000_10";
 
 export interface Member {
   name: string;

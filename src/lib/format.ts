@@ -6,6 +6,7 @@ export const NBA_ERA_OPTIONS: { value: NbaEra; label: string }[] = [
   { value: "averages_2010_20", label: "2010–20 averages" },
   { value: "averages_2000_10", label: "2000–10 averages" },
   { value: "averages_1990_00", label: "1990–00 averages" },
+  { value: "peaks_2000_10", label: "2000–10 peaks" },
   { value: "peaks_1990_00", label: "1990–00 peaks" },
 ];
 
