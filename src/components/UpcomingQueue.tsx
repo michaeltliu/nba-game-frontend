@@ -41,6 +41,7 @@ export default function UpcomingQueue({ upcoming }: Props) {
               )}
               <Headshot
                 pid={p.pid}
+                brId={p.br_id}
                 name={p.name}
                 peak={p.peak}
                 className="h-20 w-full rounded-lg bg-court-700"

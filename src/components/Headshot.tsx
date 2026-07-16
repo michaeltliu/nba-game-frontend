@@ -3,6 +3,7 @@ import { headshotUrl, initials } from "../lib/format";
 
 interface Props {
   pid: number;
+  brId: string;
   name: string;
   peak?: number;
   peakBadgeClassName?: string;
@@ -11,6 +12,7 @@ interface Props {
 
 export default function Headshot({
   pid,
+  brId,
   name,
   peak = 0,
   peakBadgeClassName = "",
@@ -28,7 +30,7 @@ export default function Headshot({
         </div>
       ) : (
         <img
-          src={headshotUrl(pid)}
+          src={headshotUrl(pid, brId)}
           alt={name}
           loading="lazy"
           onError={() => setFailed(true)}

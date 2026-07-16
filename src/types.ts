@@ -1,6 +1,7 @@
 export interface NBAPlayer {
   name: string;
   pid: number;
+  br_id: string;
   peak: number;
   pts: number;
   ast: number;

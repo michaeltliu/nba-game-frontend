@@ -76,7 +76,10 @@ export function fmtScore(n: number): string {
   return n.toFixed(2);
 }
 
-export function headshotUrl(pid: number): string {
+export function headshotUrl(pid: number, brId: string): string {
+  if (brId.trim()) {
+    return `https://www.basketball-reference.com/req/202605210/images/headshots/${encodeURIComponent(brId.trim())}.jpg`;
+  }
   return `https://cdn.nba.com/headshots/nba/latest/1040x760/${pid}.png`;
 }
 
